@@ -1,5 +1,5 @@
 package com.ncprojects.enums;
 
-public enum UserVerificactionStatus {
+public enum UserVerificationStatus {
     PENDING, VERIFIED, INACTIVE
 }
