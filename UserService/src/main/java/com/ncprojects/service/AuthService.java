@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AuthService {
     @Autowired
@@ -32,7 +34,7 @@ public class AuthService {
     @Autowired
     private IUserRepo iUserRepo;
 
-    public Long registerUser(SignUpDto signUpDto){
+    public String registerUser(SignUpDto signUpDto){
        return createUser(signUpDto);
     }
 
@@ -48,7 +50,7 @@ public class AuthService {
     }
 
     @Transactional
-    private Long createUser(SignUpDto signUpDTO){
+    private String createUser(SignUpDto signUpDTO){
         final User user = new User();
 
         mapToEntity(signUpDTO, user);
@@ -60,8 +62,7 @@ public class AuthService {
 
         iUserRepo.save(user);
 
-
-        return user.getId();
+        return jwtservice.generateToken(user.getUsername());
     }
 
     private void mapToEntity(SignUpDto signUpDTO, User user){

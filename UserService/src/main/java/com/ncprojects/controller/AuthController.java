@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/public")
 public class AuthController {
@@ -18,10 +20,10 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/register")
-    ResponseEntity<Long> registerUser(@RequestBody @Valid final SignUpDto signUpDTO){
+    ResponseEntity<String> registerUser(@RequestBody @Valid final SignUpDto signUpDTO){
 
-        Long id = authService.registerUser(signUpDTO);
-        return ResponseEntity.ok(id);
+        String token = authService.registerUser(signUpDTO);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/login")

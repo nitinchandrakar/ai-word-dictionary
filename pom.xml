@@ -14,7 +14,12 @@
 	<packaging>pom</packaging>
 	<name>AiDictionary</name>
 	<description>This is AI powered word dictionary </description>
-	<properties>
+    <modules>
+        <module>WordService</module>
+        <module>CommonModule</module>
+        <module>AppGateWay</module>
+    </modules>
+    <properties>
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
